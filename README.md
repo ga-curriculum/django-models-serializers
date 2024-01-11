@@ -47,7 +47,7 @@ Here's our final ERD for Cat Collector:
 
 We can update and render the attributes of these **objects** in the same way we worked with Mongoose documents.
 
-## 5. Models in Django
+## 4. Models in Django
 
 Each Model is defined as a Python class that inherits from `django.db.models.Model`.
 
@@ -98,7 +98,7 @@ An ERD Entity maps to a **Model** in Django, which maps to a **table** in the da
 <hr>
 </details>
 
-## 6. Making and Running Migrations
+## 5. Making and Running Migrations
 
 ### What are Migrations?
 
@@ -173,7 +173,7 @@ When is it necessary to make and run migrations?
 <hr>
 </details>
 
-## 7. Performing CRUD Using Django's ORM
+## 6. Performing CRUD Using Django's ORM
 
 ### What's an ORM?
 
@@ -432,7 +432,7 @@ Poor old cat:
 >>> Cat.objects.order_by('-age')[0]
 ```
 
-## 8. I am the Admin!
+## 7. I am the Admin!
 
 But wait, there's another really REALLY neat thing about Django - it comes with a built-in Administration functionality! Remember that `django.contrib.admin` in the `INSTALLED_APPS`? Time to use that app!
 
@@ -474,7 +474,7 @@ No need to restart the server - just refresh that beautiful portal!
 We can add, edit, and remove data objects anytime we need to by browsing to `/admin` - neat!
 
 
-## 9. Serializers
+## 8. Serializers
 
 Now it's time to set up our serializers! Here's a recap of what serializers are from the Django REST documentation:
 
@@ -494,7 +494,7 @@ class CatSerializer(serializers.ModelSerializer):
         fields = '__all__'
 ```
 
-## 8. Using the `Cat` Model in Cat Collector
+## 9. Using the `Cat` Model in Cat Collector
 
 Time to add some of this ORM magic to Cat Collector!
 
@@ -602,13 +602,13 @@ Let's break down the views above:
 
 Feel free to test each route on Postman.
 
-## Lab
+## 10. Lab
 
 For practice, do everything we did in this lesson on your Finch Collector project!
 
 Don't forget to make commits.
 
-## 11. Further Study
+## 11. Further Reading
 #### Customizing Class-based Views
 Class-based Views are classes defined in the Django framework that we can extend and use instead of view functions.
 
