@@ -15,6 +15,7 @@
 8. Serializers
 9. Using the `Cat` Model in Cat Collector
 10. Lab
+11. Further Reading
 
 ## 1. Setup
 
@@ -599,11 +600,25 @@ Let's break down the views above:
 
 👏 **Congrats on coding the Django `Cat` Model and Serializer; as well as the updated url patterns and view functionality for the Cat Collector. We now have full CRUD on the cat model!**
 
+Feel free to test each route on Postman.
+
 ## Lab
 
 For practice, do everything we did in this lesson on your Finch Collector project!
 
 Don't forget to make commits.
+
+## 11. Further Study
+#### Customizing Class-based Views
+Class-based Views are classes defined in the Django framework that we can extend and use instead of view functions.
+
+So, we now know that Django provides us with a set of very useful classes that make development in Django easier and more productive.
+
+You should consider class-based views as the go to vs. function-based views.
+
+There might come a time though, when you might believe that class-based views can't be used in situations that require more flexibility. However, Django's class-based views are designed to be easily customizable by overriding their methods and assigning values to attributes.
+
+Your app's requirements may, or may not, need to depend upon customization of the built-in CBVs, however, you should take time to investigate the variety of options.
 
 ## Resources
 
