@@ -7,7 +7,7 @@
 
 1. Setup
 2. The Model Layer in the Django Architecture
-4. What's a Model?
+3. What's a Model?
 5. Models in Django
 6. Making and Running Migrations
 7. Performing CRUD Using Django's ORM
@@ -22,13 +22,13 @@ The code for this lesson picks up right where we left off in the [_Django Setup,
 
 Nagigate to your django-catcollector directory and enter your virtual environment by running ```pipenv shell``` in your terminal. Make sure to open your code editor and run your django server.
 
-## The Model Layer in the Django Architecture
+## 2. The Model Layer in the Django Architecture
 
 <img src="./mvt-pattern.png">
 	
 This lesson focuses on the **Model layer** which provides **Views** with access to the **database**.
 
-## 4. What's a Model?
+## 3. What's a Model?
 
 **Models** are used to perform CRUD data operations on a database.
 
