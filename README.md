@@ -42,7 +42,7 @@ When we retrieve data from the database (using a Model of course), we will have 
 
 Here's our final ERD for Cat Collector:
 
-![Final ERD](./final-ERD.png)
+![Final ERD](./final-erd.png)
 
 We can update and render the attributes of these **objects** in the same way we worked with Mongoose documents.
 
