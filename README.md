@@ -473,7 +473,7 @@ No need to restart the server - just refresh that beautiful portal!
 We can add, edit, and remove data objects anytime we need to by browsing to `/admin` - neat!
 
 
-## Serializers
+## 9. Serializers
 
 Now it's time to set up our serializers! Here's a recap of what serializers are from the Django REST documentation:
 
@@ -493,7 +493,11 @@ class CatSerializer(serializers.ModelSerializer):
         fields = '__all__'
 ```
 
-## Typical Process to Add Functionality to an App
+## 8. Using the `Cat` Model in Cat Collector
+
+Time to add some of this ORM magic to Cat Collector!
+
+### Typical Process to Add Functionality to an App
 
 Remember, nothing is going to happen unless an HTTP request leaves the browser informing the server what the app wants to do.
 
@@ -503,72 +507,42 @@ When adding additional functionality to a web app we need to do the following:
 2. Code the route on the server. In the case of Django, this is done by adding an additional `path(...)` to the `urlpatterns` list within the app’s `**urls.py**` module. **Each entry in `urlpatterns` determines what code will run when the URL matches an HTTP request**.
 3. Now you need to add the *view function* referenced by the `path(...)` inside of the `**views.py**` module. The *view function* contains the code to perform CRUD, etc. It ultimately is responsible for responding to the client’s request…
 
-Make it a habit to follow the steps above anytime you need new functionality in your app.
-
-## 8. Using the `Cat` Model in Cat Collector
-
-Time to add some of this ORM magic to Cat Collector!
+Make it a habit to follow the steps above anytime you need new functionality in your app. Let's recap:
 
 - Step 1: Determine the proper route
 - Step 2: Define the route
 - Step 3: Code the view
 
-> Note: The __view__ logic will use the `Cat` Model and appropriate serializers to perform CRUD operations and send JSON to the client, respectively
+> Note: The __view__ logic will use the `Cat` Model and appropriate serializer to perform CRUD operations and send JSON to the client, respectively
 
 #### Step 1 - Determine the Proper Route
 
 In Django, we don't worry about the HTTP method when determining the "proper" route for a feature.
 
-So what should the path be for viewing a single cat's detail page?
+So what should the path be for viewing all cats or a single cat?
 
 Once again, we can use a RESTful path:
 
 ```
-/cats/:id
+/cats/
+/cats/:id/
 ```
 
 We'll see how to define that route parameter Django style in Step 2.
 
-
-
-```python
-# main_app/views.py
-
-from django.shortcuts import render
-
-# Import the Cat Serializer and Model
-from .serializers import CatSerializer
-from .models import Cat
-
-...
-
-def cats_index(request):
-    [TBD]
-
-```
-
-Don't forget to import the `Cat` Model and `CatSerializer` too!
-
-Great work so far!
-
-
-
-
-
-
-
-
-
 #### Step 2 - Define the Route
 
-Add route entries to the `urlpatterns` list in ***main_app/urls.py*** (we don't have views to point the path to, but you can name them now and create them later):
+Add route entries to the `urlpatterns` list in ***main_app/urls.py*** (we don't have views to point to, but you can name them now and create them after):
 
 ```python
+from django.urls import path
+from .views import Home, CatList, CatDetail # additional imports
+
 urlpatterns = [
   path('', Home.as_view(), name='home'),
   # new routes below 
-  path('cats/', views.cats_index, name='index'),
-  path('cats/<int:cat_id>/', views.cats_detail, name='detail'),
+  path('cats/', CatList.as_view(), name='cat-list'),
+  path('cats/<int:id>/', CatDetail.as_view(), name='cat-detail'),
 ]
 ```
 
@@ -578,47 +552,52 @@ The `int:` part is called a "converter" and it's used to match and convert the c
 
 If the data in the segment does not look like an integer, then it will not be matched - this is different than what we saw in Express where URL parameters were always *string values*. 
 
-We've decided that the newly added route will invoke an appropriately named view function.
-
 #### Step 3 - Code the View
 
 As you know, view functions are defined within **views.py**.
 
-Here's the new view functions:
+Please find the updated views.py file below:
 
 ```python
-# main_app/views.py
+# additional imports below
+from rest_framework import generics
+from .models import Cat
+from .serializers import CatSerializer
 
-...
+class CatList(generics.ListCreateAPIView):
+  queryset = Cat.objects.all()
+  serializer_class = CatSerializer
 
-def cats_index(request):
-  cat = Cat.objects.all()
-  return render(request, 'cats/detail.html', { 'cat': cat })
-
-def cats_detail(request, cat_id):
-  cat = Cat.objects.get(id=cat_id)
-  return render(request, 'cats/detail.html', { 'cat': cat })
+class CatDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Cat.objects.all()
+  serializer_class = CatSerializer
+  lookup_field = 'id'
 ```
 
 > 👀 Django will pass any captured URL parameters as a named argument to the view function!
 
-The `cats_detail` function is using the `get` method to obtain the cat object by its `id`.
+What are generics?
+- [Django Documentation on Generic Views](https://www.django-rest-framework.org/api-guide/generic-views/) suggest generic views were developed as a shortcut for common usage patterns. They take certain common idioms and patterns found in view development and abstract them so that you can quickly write common views of data without having to repeat yourself.
+
+Let's break down the views above:
+- CatList is a view that handles GET requests for a list of cats and POST requests to create a new cat.
+- CatDetail is a view that handles GET, PUT, PATCH, and DELETE requests for a single cat, identified by its ID.
 
 <details>
 <summary>
-❓ What determined the parameter name of <code>cat_id</code> in the view function?
+❓ What determined the parameter name of <code>id</code> in the view function?
 </summary>
 <hr>
 
 **The route parameter in urls.py:**
 <br>
-<code>cats/&lt;int:cat_id&gt;/</code>
+<code>cats/&lt;int:id&gt;/</code>
 <br>
 
 <hr>
 </details>
 
-👏 **Congrats on coding the Django `Cat` Model and Serializer; as well as the updated url patterns and view functionality for the Cat Collector!**
+👏 **Congrats on coding the Django `Cat` Model and Serializer; as well as the updated url patterns and view functionality for the Cat Collector. We now have full CRUD on the cat model!**
 
 ## Lab
 
