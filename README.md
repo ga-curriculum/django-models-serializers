@@ -447,7 +447,7 @@ python manage.py createsuperuser
 
 You will be prompted to enter a username, email address, and a password. Enter a simple username, SKIP the email address by hitting Enter, Django will want you to create a password that's complex, make a simple password like `1111` and then you can bypass the password warning by typing `y` at the warning prompt.
 
-Now go to your browser and type `localhost:8000/admin` to access the administration portal!  
+Now go to your browser and type `localhost:8000/admin` to access the administration portal (make sure your server is running)!  
 
 Did you mess up your password? It's okay - no sweat...go back to your Terminal and use this handy command:
 
