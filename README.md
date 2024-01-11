@@ -620,7 +620,7 @@ There might come a time though, when you might believe that class-based views ca
 
 Your app's requirements may, or may not, need to depend upon customization of the built-in CBVs, however, you should take time to investigate the variety of options.
 
-## Resources
+### Resources
 
 [Django Model API](https://docs.djangoproject.com/en/4.1/ref/models/)
 
