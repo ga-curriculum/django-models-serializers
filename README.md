@@ -8,13 +8,13 @@
 1. Setup
 2. The Model Layer in the Django Architecture
 3. What's a Model?
-5. Models in Django
-6. Making and Running Migrations
-7. Performing CRUD Using Django's ORM
-8. Using the `Cat` Model in Cat Collector
-9. I am the Admin!
-10. Adding a Cat "Details" Page
-11. Removing Hand-coded URLs in Templates
+4. Models in Django
+5. Making and Running Migrations
+6. Performing CRUD Using Django's ORM
+7. I am the Admin!
+8. Serializers
+9. Using the `Cat` Model in Cat Collector
+10. Lab
 
 ## 1. Setup
 
