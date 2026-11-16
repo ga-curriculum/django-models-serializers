@@ -19,7 +19,7 @@
 
 ## 1. Setup
 
-The code for this lesson picks up right where we left off in the [_Django Setup, URLs, & Views_](https://git.generalassemb.ly/SEB-Base-Curriculum/django-setup-urls-views) lesson.
+The code for this lesson picks up right where we left off in the [_Django Setup, URLs, & Views_](https://github.com/ga-curriculum/django-setup-urls-views) lesson.
 
 Nagigate to your django-catcollector directory and enter your virtual environment by running ```pipenv shell``` in your terminal. Make sure to open your code editor and run your django server.
 
